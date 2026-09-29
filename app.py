@@ -243,7 +243,12 @@ st.markdown(
 )
 
 
-opportunities = read_json(ROOT / "data" / "opportunities.json")["opportunities"]
+opportunities_path = ROOT / "data" / "opportunities.json"
+
+if opportunities_path.exists():
+    opportunities = read_json(opportunities_path)["opportunities"]
+else:
+    opportunities = []
 opportunity_map = {item["id"]: item for item in opportunities}
 
 EDUCATION_LABELS = {
